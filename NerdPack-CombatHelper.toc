@@ -1,0 +1,10 @@
+## Title: |r[|cff0070deNerdPack|r] Combat Helper
+## Notes: A plugin for NerdPack.
+## Dependencies: NerdPack
+## Interface: 60200
+## Author: MrTheSoulz
+
+core.lua
+Targets.lua
+Facing.lua
+Movement.lua
