@@ -72,7 +72,7 @@ function NeP.CombatHelper.Target()
 			end
 		end
 		table.sort(setPrio, function(a,b) return a.bonus > b.bonus end)
-		if setPrio[1] ~= nil then
+		if setPrio[1] then
 			NeP.Engine.Macro('/target '..setPrio[1].key)
 		end
 	end
