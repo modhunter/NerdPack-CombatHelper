@@ -30,14 +30,14 @@ local function manualMoving()
 	local a = GetKeyState('65')
 	local s = GetKeyState('83')
 	local d = GetKeyState('68')
-	local w = GetKeyState('87') 
+	local w = GetKeyState('87')
 	if a or s or d or w then
 		return true
 	end
 end
 
 -- Ticker
-C_Timer.NewTicker(1, (function()
+C_Timer.NewTicker(0.25, (function()
 	if NeP.Config.Read('bStates_MasterToggle', false)
 	and UnitAffectingCombat('player') then
 		-- Targets
