@@ -7,6 +7,7 @@ local CombatHelper = NeP.CombatHelper
 local Fetch = NeP.Interface.fetchKey
 
 -- Core version check
+if NeP.Info.Version >= 70.2 then
 	NeP.Core.Print('Loaded Combat Helper Module v:'..NeP.CombatHelper.Version)
 else
 	NeP.Core.Print('Failed to Combat Helper Module.\nYour Core is outdated.')
