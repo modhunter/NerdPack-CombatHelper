@@ -1,8 +1,17 @@
-NeP.CombatHelper = {}
+NeP.CombatHelper = {
+	Version = 1.0
+}
 
 local Interface = NeP.Interface
 local CombatHelper = NeP.CombatHelper
 local Fetch = NeP.Interface.fetchKey
+
+-- Core version check
+	NeP.Core.Print('Loaded Combat Helper Module v:'..NeP.CombatHelper.Version)
+else
+	NeP.Core.Print('Failed to Combat Helper Module.\nYour Core is outdated.')
+	return
+end
 
 local config = {
 	key = 'NePCombatHelper',
@@ -24,7 +33,7 @@ local config = {
 }
 
 Interface.buildGUI(config)
-Interface.CreatePlugin('Combat Helper', function() Interface.ShowGUI('NePCombatHelper') end)
+Interface.CreatePlugin('Combat Helper'..NeP.CombatHelper.Version, function() Interface.ShowGUI('NePCombatHelper') end)
 
 local function manualMoving()
 	local a = GetKeyState('65')
@@ -38,7 +47,7 @@ end
 
 -- Ticker
 C_Timer.NewTicker(1, (function()
-	if NeP.Config.Read('bStates_MasterToggle', false)
+	if NeP.DSL.get('toggle')('mastertoggle')
 	and UnitAffectingCombat('player') then
 		-- Targets
 		if Fetch('NePCombatHelper', 'Targets', true) then
