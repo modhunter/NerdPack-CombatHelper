@@ -47,14 +47,13 @@ local function manualMoving()
 end
 
 -- Ticker
-C_Timer.NewTicker(0.25, (function()
-	if NeP.DSL.get('toggle')('mastertoggle')
-	and UnitAffectingCombat('player') then
+C_Timer.NewTicker(0.1, (function()
+	if UnitAffectingCombat('player') and NeP.DSL.get('toggle')('mastertoggle') then
 		-- Targets
 		if Fetch('NePCombatHelper', 'Targets', true) then
 			CombatHelper.Target()
 		end
-		if FireHack and UnitExists('target') and not UnitChannelInfo('player') then
+		if IsHackEnabled and UnitExists('target') and not UnitChannelInfo('player') then
 			if not manualMoving() then
 				-- Facing
 				if Fetch('NePCombatHelper', 'Facing', false) then
