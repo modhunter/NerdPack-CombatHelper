@@ -61,7 +61,7 @@ function NeP.CombatHelper.Target()
 		for i=1,#NeP.OM.unitEnemie do
 			local Obj = NeP.OM.unitEnemie[i]
 			if UnitExists(Obj.key) and Obj.distance <= 40 then
-				if UnitAffectingCombat(Obj.key) or Obj.is == 'dummy'
+				if (UnitAffectingCombat(Obj.key) or Obj.is == 'dummy')
 				and NeP.Engine.LineOfSight('player', Obj.key) then
 					setPrio[#setPrio+1] = {
 						key = Obj.key,
