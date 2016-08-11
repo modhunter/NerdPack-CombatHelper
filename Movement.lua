@@ -1,23 +1,8 @@
-local Core = NeP.Core
-
-local rangeTable = {
-	['HUNTER'] = 'ranged',
-	['WARLOCK'] = 'ranged',
-	['PRIEST'] = 'ranged',
-	['PALADIN'] = 'melee',
-	['MAGE'] = 'ranged', 
-	['ROGUE'] = 'melee',
-	['DRUID'] = 'melee',
-	['SHAMAN'] = 'ranged',
-	['WARRIOR'] = 'melee',
-	['DEATHKNIGHT'] = 'melee',
-	['MONK'] = 'melee'
-}
-
 function NeP.CombatHelper.Move()
-	local pClass = select(2, UnitClass('player'))
-	local tRange = rangeTable[pClass]
-	local Range = Core.UnitAttackRange('player', 'target', tRange)
+	local classIndex = select(3, UnitClass('player'))
+	local specIndex = GetSpecializationInfo(GetSpecialization())
+	local tRange = NeP.Core.ClassTable[classIndex][specIndex].range
+	local Range = NeP.Engine.UnitAttackRange('player', 'target', tRange)
 	local unitSpeed = GetUnitSpeed('player')
 	-- Stop Moving
 	if Range > NeP.Engine.Distance('player', 'target') and unitSpeed ~= 0 then 

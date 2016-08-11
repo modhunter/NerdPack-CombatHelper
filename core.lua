@@ -1,5 +1,5 @@
 NeP.CombatHelper = {
-	Version = 1.0
+	Version = 1.1
 }
 
 local Interface = NeP.Interface
@@ -27,14 +27,14 @@ local config = {
 			{ type = 'checkbox', text = 'Auto Targets', key = 'Targets', default = true },
 
 		{ type = 'spacer' },{ type = 'rule' },
-		{ type = 'header', text = '|cfffd1c15FireHack|r Only:', size = 25, align = 'Center' },
+		{ type = 'header', text = '|cfffd1c15Advanced|r Only:', size = 25, align = 'Center' },
 			{ type = 'checkbox', text = 'Automated Facing', key = 'Facing', default = false },
 			{ type = 'checkbox', text = 'Automated Movements', key = 'Movements', default = false },
 	}
 }
 
 Interface.buildGUI(config)
-Interface.CreatePlugin('Combat Helper'..NeP.CombatHelper.Version, function() Interface.ShowGUI('NePCombatHelper') end)
+Interface.CreatePlugin('Combat Helper V:'..NeP.CombatHelper.Version, function() Interface.ShowGUI('NePCombatHelper') end)
 
 local function manualMoving()
 	local a = GetKeyState('65')
