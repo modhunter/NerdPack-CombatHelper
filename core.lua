@@ -48,7 +48,7 @@ end
 
 -- Ticker
 C_Timer.NewTicker(0.1, (function()
-	if UnitAffectingCombat('player') and NeP.DSL.get('toggle')('mastertoggle') then
+	if UnitAffectingCombat('player') and NeP.DSL.Get('toggle')(nil, 'mastertoggle') then
 		-- Targets
 		if Fetch('NePCombatHelper', 'Targets', true) then
 			CombatHelper.Target()
