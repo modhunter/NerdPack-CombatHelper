@@ -17,8 +17,8 @@ local function MeshFilter(bx, by ,bz)
 end
 
 local function Build_Mesh()
-	for i=1,#NeP.OM.unitFriend do
-		local Obj = NeP.OM.unitFriend[i]
+	for i=1,#NeP.OM['unitFriend'] do
+		local Obj = NeP.OM['unitFriend'][i]
 		if UnitExists(Obj.key)then
 			local oX, oY, oZ = ObjectPosition(Obj.key)
 			if MeshFilter(oX, oY, oZ) then

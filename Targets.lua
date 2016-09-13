@@ -58,8 +58,8 @@ function NeP.CombatHelper.Target()
 	-- If dont have a target, target is friendly or dead
 	if not UnitExists('target') or UnitIsFriend('player', 'target') or UnitIsDeadOrGhost('target') then
 		local setPrio = {}
-		for i=1,#NeP.OM.unitEnemie do
-			local Obj = NeP.OM.unitEnemie[i]
+		for i=1,#NeP.OM['unitEnemie'] do
+			local Obj = NeP.OM['unitEnemie'][i]
 			if UnitExists(Obj.key) and Obj.distance <= 40 then
 				if (UnitAffectingCombat(Obj.key) or Obj.is == 'dummy')
 				and NeP.Engine.LineOfSight('player', Obj.key) then
