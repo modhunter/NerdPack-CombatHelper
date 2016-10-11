@@ -1,25 +1,12 @@
-NeP.CombatHelper = {
-	Version = 1.1
-}
+local n_name, CH = ...
 
-local Interface = NeP.Interface
-local CombatHelper = NeP.CombatHelper
-local Fetch = NeP.Interface.fetchKey
-
--- Core version check
-if NeP.Info.Version >= 70.2 then
-	NeP.Core.Print('Loaded Combat Helper Module v:'..NeP.CombatHelper.Version)
-else
-	NeP.Core.Print('Failed to Combat Helper Module.\nYour Core is outdated.')
-	return
-end
+CH = {}
+CH.Version = 1.2
 
 local config = {
-	key = 'NePCombatHelper',
-	profiles = true,
-	title = '|T'..Interface.Logo..':10:10|t'..' '..NeP.Info.Name,
-	subtitle = 'Combat Helper Settings',
-	color = Interface.addonColor,
+	key = 'NeP_CombatHelper',
+	title = n_name,
+	subtitle = 'Settings',
 	width = 250,
 	height = 200,
 	config = {
@@ -33,8 +20,9 @@ local config = {
 	}
 }
 
-Interface.buildGUI(config)
-Interface.CreatePlugin('Combat Helper V:'..NeP.CombatHelper.Version, function() Interface.ShowGUI('NePCombatHelper') end)
+local GUI = NeP.Interface:BuildGUI(config)
+NeP.Interface:Add('Combat Helper V:'..CH.Version, function() GUI:Show() end)
+GUI:Hide()
 
 local function manualMoving()
 	local a = GetKeyState('65')
@@ -48,20 +36,20 @@ end
 
 -- Ticker
 C_Timer.NewTicker(0.1, (function()
-	if UnitAffectingCombat('player') and NeP.DSL.Get('toggle')(nil, 'mastertoggle') then
+	if UnitAffectingCombat('player') and NeP.DSL:Get('toggle')(nil, 'mastertoggle') then
 		-- Targets
-		if Fetch('NePCombatHelper', 'Targets', true) then
-			CombatHelper.Target()
+		if NeP.Interface:fetchKey('NePCombatHelper', 'Targets', true) then
+			CH:Target()
 		end
 		if IsHackEnabled and UnitExists('target') and not UnitChannelInfo('player') then
 			if not manualMoving() then
 				-- Facing
-				if Fetch('NePCombatHelper', 'Facing', false) then
-					CombatHelper.Face()
+				if NeP.Interface:fetchKey('NePCombatHelper', 'Facing', false) then
+					CH:Face()
 				end
 				-- Movements
-				if Fetch('NePCombatHelper', 'Movements', false) then
-					CombatHelper.Move()
+				if NeP.Interface:fetchKey('NePCombatHelper', 'Movements', false) then
+					CH:Move()
 				end
 			end
 		end
