@@ -1,6 +1,5 @@
 local n_name, CH = ...
 
-CH = {}
 CH.Version = 1.2
 
 local config = {
@@ -38,17 +37,17 @@ end
 C_Timer.NewTicker(0.1, (function()
 	if UnitAffectingCombat('player') and NeP.DSL:Get('toggle')(nil, 'mastertoggle') then
 		-- Targets
-		if NeP.Interface:fetchKey('NePCombatHelper', 'Targets', true) then
+		if NeP.Interface:fetchKey('NeP_CombatHelper', 'Targets', true) then
 			CH:Target()
 		end
 		if IsHackEnabled and UnitExists('target') and not UnitChannelInfo('player') then
 			if not manualMoving() then
 				-- Facing
-				if NeP.Interface:fetchKey('NePCombatHelper', 'Facing', false) then
+				if NeP.Interface:fetchKey('NeP_CombatHelper', 'Facing', false) then
 					CH:Face()
 				end
 				-- Movements
-				if NeP.Interface:fetchKey('NePCombatHelper', 'Movements', false) then
+				if NeP.Interface:fetchKey('NeP_CombatHelper', 'Movements', false) then
 					CH:Move()
 				end
 			end
