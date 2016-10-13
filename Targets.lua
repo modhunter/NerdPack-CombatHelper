@@ -1,3 +1,5 @@
+local _, CH = ...
+
 local NeP_forceTarget = {
 	-- WOD DUNGEONS/RAIDS
 	[75966] = 100,	-- Defiled Spirit (Shadowmoon Burial Grounds)
@@ -54,15 +56,14 @@ local function getTargetPrio(Obj)
 	return prio
 end
 
-function NeP.CombatHelper.Target()
+function CH:Target()
 	-- If dont have a target, target is friendly or dead
 	if not UnitExists('target') or UnitIsFriend('player', 'target') or UnitIsDeadOrGhost('target') then
 		local setPrio = {}
-		for i=1,#NeP.OM['unitEnemie'] do
-			local Obj = NeP.OM['unitEnemie'][i]
+		for GUID, Obj in pairs(NeP.OM:Get('Enemy')) do
 			if UnitExists(Obj.key) and Obj.distance <= 40 then
-				if (UnitAffectingCombat(Obj.key) or isDummy(Obj.key))
-				and NeP.Engine.LineOfSight('player', Obj.key) then
+				if (UnitAffectingCombat(Obj.key) or NeP.DSL:Get('isdummy')(Obj.key))
+				and NeP.Protected:LineOfSight('player', Obj.key) then
 					setPrio[#setPrio+1] = {
 						key = Obj.key,
 						bonus = getTargetPrio(Obj.key),
