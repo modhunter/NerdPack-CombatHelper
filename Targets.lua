@@ -46,7 +46,7 @@ local function getTargetPrio(Obj)
 	local ID = tonumber(_id) or '0'
 	local prio = 1
 	-- Elite
-	if NeP.DSL.Conditions['elite'](Obj) then
+	if NeP.DSL:Get('elite')(Obj) then
 		prio = prio + 30
 	end
 	-- If its forced
@@ -74,7 +74,7 @@ function CH:Target()
 		end
 		table.sort(setPrio, function(a,b) return a.bonus > b.bonus end)
 		if setPrio[1] then
-			NeP.Engine.Macro('/target '..setPrio[1].key)
+			NeP.Protected.Macro('/target '..setPrio[1].key)
 		end
 	end
 end
