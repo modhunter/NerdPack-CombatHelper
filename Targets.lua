@@ -51,7 +51,7 @@ local function getTargetPrio(Obj)
 	end
 	-- If its forced
 	if NeP_forceTarget[tonumber(Obj)] ~= nil then
-		prio = prio + NeP_forceTarget[tonumber(Obj)] 
+		prio = prio + NeP_forceTarget[tonumber(Obj)]
 	end
 	return prio
 end

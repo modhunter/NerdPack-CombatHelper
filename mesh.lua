@@ -77,7 +77,7 @@ C_Timer.NewTicker(1, (function()
 		local ax, ay, az = ObjectPosition('player')
 		local tempTable = GetPath(wx, wy, wz)
 		for i=1, #tempTable do
-			local Mesh = Mesh[i] 
+			local Mesh = Mesh[i]
 			local bx, by, bz = Mesh.x, Mesh.y, Mesh.z
 			local distance = GetPathDistance(ax, ay, az, bx, by, bz)
 			if distance > 1 then
