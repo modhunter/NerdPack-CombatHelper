@@ -74,7 +74,7 @@ function CH:Target()
 		end
 		table.sort(setPrio, function(a,b) return a.bonus > b.bonus end)
 		if setPrio[1] then
-			NeP.Protected.Macro('/target '..setPrio[1].key)
+			TargetUnit(setPrio[1].key)
 		end
 	end
 end

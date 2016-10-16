@@ -2,7 +2,7 @@ local _, CH = ...
 
 function CH:Face()
 	local unitSpeed = GetUnitSpeed('player')
-	if unitSpeed == 0 and not NeP.Protected:Infront('player', 'target') then
+	if unitSpeed == 0 and not NeP.DSL:Get('Infront')('target') then
 		local ax, ay, az = ObjectPosition('player')
 		local bx, by, bz = ObjectPosition('target')
 		local angle = rad(atan2(by - ay, bx - ax))
