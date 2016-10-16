@@ -63,7 +63,7 @@ function CH:Target()
 		for GUID, Obj in pairs(NeP.OM:Get('Enemy')) do
 			if UnitExists(Obj.key) and Obj.distance <= 40 then
 				if (UnitAffectingCombat(Obj.key) or NeP.DSL:Get('isdummy')(Obj.key))
-				and NeP.Protected:LineOfSight('player', Obj.key) then
+				and NeP.DSL:Get('infront')(Obj.key) then
 					setPrio[#setPrio+1] = {
 						key = Obj.key,
 						bonus = getTargetPrio(Obj.key),
