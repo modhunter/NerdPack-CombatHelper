@@ -51,7 +51,7 @@ local function getTargetPrio(Obj)
 	end
 	-- If its forced
 	if NeP_forceTarget[tonumber(Obj)] ~= nil then
-		prio = prio + NeP_forceTarget[tonumber(Obj)] 
+		prio = prio + NeP_forceTarget[tonumber(Obj)]
 	end
 	return prio
 end
@@ -63,7 +63,7 @@ function CH:Target()
 		for GUID, Obj in pairs(NeP.OM:Get('Enemy')) do
 			if UnitExists(Obj.key) and Obj.distance <= 40 then
 				if (UnitAffectingCombat(Obj.key) or NeP.DSL:Get('isdummy')(Obj.key))
-				and NeP.Protected:LineOfSight('player', Obj.key) then
+				and NeP.DSL:Get('infront')(Obj.key) then
 					setPrio[#setPrio+1] = {
 						key = Obj.key,
 						bonus = getTargetPrio(Obj.key),
@@ -74,7 +74,7 @@ function CH:Target()
 		end
 		table.sort(setPrio, function(a,b) return a.bonus > b.bonus end)
 		if setPrio[1] then
-			NeP.Protected.Macro('/target '..setPrio[1].key)
+			TargetUnit(setPrio[1].key)
 		end
 	end
 end
