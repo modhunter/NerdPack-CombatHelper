@@ -58,7 +58,7 @@ end
 
 function CH:Target()
 	-- If dont have a target, target is friendly or dead
-	if not UnitExists('target') or UnitIsFriend('player', 'target') or UnitIsDeadOrGhost('target') then
+  if not UnitExists('target') or UnitReaction('player', 'target') > 4 or UnitIsDeadOrGhost('target') then
 		local setPrio = {}
 		for GUID, Obj in pairs(NeP.OM:Get('Enemy')) do
 			if UnitExists(Obj.key) and Obj.distance <= 40 then
